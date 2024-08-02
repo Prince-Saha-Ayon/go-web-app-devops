@@ -3,7 +3,7 @@
 # and run the container
 
 # Start with a base image
-FROM golang:1.21 as base
+FROM golang:1.21 as builder
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -26,10 +26,10 @@ RUN go build -o main .
 FROM gcr.io/distroless/base
 
 # Copy the binary from the previous stage
-COPY --from=base /app/main .
+COPY --from=builder /app/main .
 
 # Copy the static files from the previous stage
-COPY --from=base /app/static ./static
+COPY --from=builder /app/static ./static
 
 # Expose the port on which the application will run
 EXPOSE 8080
