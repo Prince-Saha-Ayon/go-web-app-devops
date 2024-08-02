@@ -1,0 +1,14 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: demo-cluster
+  region: ap-south-1
+
+nodeGroups:
+  - name: ng-f1d32f57
+    instanceType: t2.medium
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 3
+    
